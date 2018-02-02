@@ -2,3 +2,7 @@ bin
 build
 SCRATCH
 tmp
+/target/
+.classpath
+.project
+.settings/
