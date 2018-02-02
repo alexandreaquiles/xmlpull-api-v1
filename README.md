@@ -9,7 +9,7 @@ To build a JAR with the API, run:
 
 ```
 mvn install
-``
+```
 
 ---
 
