@@ -30,6 +30,8 @@
 
  <properties>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  <maven.compiler.source>1.6</maven.compiler.source>
+  <maven.compiler.target>1.6</maven.compiler.target>
  </properties>
 
  <dependencies>
@@ -43,6 +45,7 @@
 
 
  <build>
+  <sourceDirectory>src/java/api</sourceDirectory>
   <plugins>
    <plugin>
     <groupId>org.apache.maven.plugins</groupId>
