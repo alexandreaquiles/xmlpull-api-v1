@@ -5,8 +5,8 @@ import java.io.OutputStream;
 import java.io.Writer;
 
 /**
- * Define an interface to serialziation of XML Infoset.
- * This interface abstracts away if serialized XML is XML 1.0 comaptible text or
+ * Define an interface to serialization of XML Infoset.
+ * This interface abstracts away if serialized XML is XML 1.0 compatible text or
  * other formats of XML 1.0 serializations (such as binary XML for example with WBXML).
  *
  * <p><b>PLEASE NOTE:</b> This interface will be part of XmlPull 1.2 API.
@@ -27,7 +27,7 @@ import java.io.Writer;
  * <p><b>NOTE:</b> writing  CDSECT, ENTITY_REF, IGNORABLE_WHITESPACE,
  *  PROCESSING_INSTRUCTION, COMMENT, and DOCDECL in some implementations
  * may not be supported (for example when serializing to WBXML).
- * In such case IllegalStateException will be thrown and it is recommened
+ * In such case IllegalStateException will be thrown and it is recommended
  * to use an optional feature to signal that implementation is not
  * supporting this kind of output.
  */
@@ -40,7 +40,7 @@ public interface XmlSerializer {
      * <a href="http://www.xmlpull.org/v1/doc/features.html">
      * http://www.xmlpull.org/v1/doc/features.html</a>.
      *
-     * If feature is not recocgnized or can not be set
+     * If feature is not recognized or can not be set
      * then IllegalStateException MUST be thrown.
      *
      * @exception IllegalStateException If the feature is not supported or can not be set
@@ -63,12 +63,12 @@ public interface XmlSerializer {
     
     /**
      * Set the value of a property.
-     * (the property name is recommened to be URI for uniqueness).
+     * (the property name is recommended to be URI for uniqueness).
      * Some well known optional properties are defined in
      * <a href="http://www.xmlpull.org/v1/doc/properties.html">
      * http://www.xmlpull.org/v1/doc/properties.html</a>.
      *
-     * If property is not recocgnized or can not be set
+     * If property is not recognized or can not be set
      * then IllegalStateException MUST be thrown.
      *
      * @exception IllegalStateException if the property is not supported or can not be set
@@ -81,7 +81,7 @@ public interface XmlSerializer {
      * Look up the value of a property.
      *
      * The property name is any fully-qualified URI. I
-     * <p><strong>NOTE:</strong> unknown properties are <string>always</strong> returned as null
+     * <p><strong>NOTE:</strong> unknown properties are <strong>always</strong> returned as null
      *
      * @param name The name of property to be retrieved.
      * @return The value of named property.
@@ -144,7 +144,7 @@ public interface XmlSerializer {
      * If there is no prefix bound to this namespace return null
      * but if generatePrefix is false then return generated prefix.
      *
-     * <p><b>NOTE:</b> if the prefix is empty string "" and defualt namespace is bound
+     * <p><b>NOTE:</b> if the prefix is empty string "" and default namespace is bound
      * to this prefix then empty string ("") is returned.
      *
      * <p><b>NOTE:</b> prefixes "xml" and "xmlns" are already bound

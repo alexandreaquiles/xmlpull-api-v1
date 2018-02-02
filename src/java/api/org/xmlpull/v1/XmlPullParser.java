@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 /**
- * XML Pull Parser is an interface that defines parsing functionlity provided
+ * XML Pull Parser is an interface that defines parsing functionality provided
  * in <a href="http://www.xmlpull.org/">XMLPULL V1 API</a> (visit this website to
  * learn more about API and its implementations).
  *
@@ -22,8 +22,8 @@ import java.io.Reader;
  *   if different value is required necessary must be changed before parsing is started)
  *   then parser behaves like XML 1.0 compliant non-validating parser under condition that
  *  <em>no DOCDECL is present</em> in XML documents
- *   (internal entites can still be defined with defineEntityReplacementText()).
- *   This mode of operation is intened <b>for operation in constrained environments</b> such as J2ME.
+ *   (internal entities can still be defined with defineEntityReplacementText()).
+ *   This mode of operation is intended <b>for operation in constrained environments</b> such as J2ME.
  * </ul>
  *
  *
@@ -45,7 +45,7 @@ import java.io.Reader;
  * <p>Th following event types are seen by next()<dl>
  * <dt><a href="#START_TAG">START_TAG</a><dd> An XML start tag was read.
  * <dt><a href="#TEXT">TEXT</a><dd> Text content was read;
- * the text content can be retreived using the getText() method.
+ * the text content can be retrieved using the getText() method.
  *  (when in validating mode next() will not report ignorable whitespaces, use nextToken() instead)
  * <dt><a href="#END_TAG">END_TAG</a><dd> An end tag was read
  * <dt><a href="#END_DOCUMENT">END_DOCUMENT</a><dd> No more events are available
@@ -87,7 +87,7 @@ import java.io.Reader;
  *         factory.setNamespaceAware(true);
  *         XmlPullParser xpp = factory.newPullParser();
  *
- *         xpp.<a href="#setInput">setInput</a>( new StringReader ( "&lt;foo>Hello World!&lt;/foo>" ) );
+ *         xpp.<a href="#setInput">setInput</a>( new StringReader ( "&lt;foo&gt;Hello World!&lt;/foo&gt;" ) );
  *         int eventType = xpp.getEventType();
  *         while (eventType != XmlPullParser.END_DOCUMENT) {
  *          if(eventType == XmlPullParser.START_DOCUMENT) {
@@ -150,7 +150,7 @@ public interface XmlPullParser {
      * Signalize that parser is at the very beginning of the document
      * and nothing was read yet.
      * This event type can only be observed by calling getEvent()
-     * before the first call to next(), nextToken, or nextTag()</a>).
+     * before the first call to next(), nextToken, or nextTag()).
      *
      * @see #next
      * @see #nextToken
@@ -221,9 +221,9 @@ public interface XmlPullParser {
      * Also, when the state was reached by calling next(), the text value will
      * be normalized, whereas getText() will
      * return unnormalized content in the case of nextToken(). This allows
-     * an exact roundtrip without chnanging line ends when examining low
+     * an exact round-trip without changing line ends when examining low
      * level events, whereas for high level applications the text is
-     * normalized apropriately.
+     * normalized appropriately.
      *
      * @see #next
      * @see #nextToken
@@ -239,7 +239,7 @@ public interface XmlPullParser {
      * this token is available only from calls to <a href="#nextToken()">nextToken()</a>.
      * A call to next() will accumulate various text events into a single event
      * of type TEXT. The text contained in the CDATA section is available
-     * by callling getText().
+     * by calling getText().
      *
      * @see #nextToken
      * @see #getText
@@ -251,7 +251,7 @@ public interface XmlPullParser {
      * this token is available from <a href="#nextToken()">nextToken()</a>
      * only. The entity name is available by calling getName(). If available,
      * the replacement text can be obtained by calling getTextt(); otherwise,
-     * the user is responsibile for resolving the entity reference.
+     * the user is responsible for resolving the entity reference.
      * This event type is never returned from next(); next() will
      * accumulate the replacement text and other text
      * events to a single TEXT event.
@@ -375,7 +375,7 @@ public interface XmlPullParser {
      * the DOCDECL event type is reported by nextToken()
      * and ignored by next().
      *
-     * If this featue is activated, then the document declaration
+     * If this feature is activated, then the document declaration
      * must be processed by the parser.
      *
      * <p><strong>Please note:</strong> If the document type declaration
@@ -392,7 +392,7 @@ public interface XmlPullParser {
 
     /**
      * If this feature is activated, all validation errors as
-     * defined in the XML 1.0 sepcification are reported.
+     * defined in the XML 1.0 specification are reported.
      * This implies that FEATURE_PROCESS_DOCDECL is true and both, the
      * internal and external document type declaration will be processed.
      * <p><strong>Please Note:</strong> This feature can not be changed
@@ -412,7 +412,7 @@ public interface XmlPullParser {
      * <p>Example: call setFeature(FEATURE_PROCESS_NAMESPACES, true) in order
      * to switch on namespace processing. The initial settings correspond
      * to the properties requested from the XML Pull Parser factory.
-     * If none were requested, all feautures are deactivated by default.
+     * If none were requested, all features are deactivated by default.
      *
      * @exception XmlPullParserException If the feature is not supported or can not be set
      * @exception IllegalArgumentException If string with the feature name is null
@@ -479,7 +479,7 @@ public interface XmlPullParser {
      *  input encoding following XML 1.0 specification (see below).
      *  If encoding detection is supported then following feature
      *  <a href="http://xmlpull.org/v1/doc/features.html#detect-encoding">http://xmlpull.org/v1/doc/features.html#detect-encoding</a>
-     *  MUST be true amd otherwise it must be false
+     *  MUST be true and otherwise it must be false
      *
      * @param inputStream contains a raw byte input stream of possibly
      *     unknown encoding (when inputEncoding is null).
@@ -494,7 +494,7 @@ public interface XmlPullParser {
      * If setInput(InputStream, inputEncoding) was called with an inputEncoding
      * value other than null, this value must be returned
      * from this method. Otherwise, if inputEncoding is null and
-     * the parser suppports the encoding detection feature
+     * the parser supports the encoding detection feature
      * (http://xmlpull.org/v1/doc/features.html#detect-encoding),
      * it must return the detected encoding.
      * If setInput(Reader) was called, null is returned.
@@ -518,7 +518,7 @@ public interface XmlPullParser {
      *
      * <p><b>Please notes:</b> The given value is used literally as replacement text
      * and it corresponds to declaring entity in DTD that has all special characters
-     * escaped: left angle bracket is replaced with &amp;lt;, ampersnad with &amp;amp;
+     * escaped: left angle bracket is replaced with &amp;lt;, ampersand with &amp;amp;
      * and so on.
      *
      * <p><b>Note:</b> The given value is the literal replacement text and must not
@@ -545,11 +545,11 @@ public interface XmlPullParser {
      * <p><b>NOTE:</b> when parser is on END_TAG then it is allowed to call
      *  this function with getDepth()+1 argument to retrieve position of namespace
      *  prefixes and URIs that were declared on corresponding START_TAG.
-     * <p><b>NOTE:</b> to retrieve lsit of namespaces declared in current element:<pre>
+     * <p><b>NOTE:</b> to retrieve list of namespaces declared in current element:<pre>
      *       XmlPullParser pp = ...
      *       int nsStart = pp.getNamespaceCount(pp.getDepth()-1);
      *       int nsEnd = pp.getNamespaceCount(pp.getDepth());
-     *       for (int i = nsStart; i < nsEnd; i++) {
+     *       for (int i = nsStart; i &lt; nsEnd; i++) {
      *          String prefix = pp.getNamespacePrefix(i);
      *          String ns = pp.getNamespaceUri(i);
      *           // ...
@@ -596,7 +596,7 @@ public interface XmlPullParser {
      * <p>This method is a convenience method for
      *
      * <pre>
-     *  for (int i = getNamespaceCount(getDepth ())-1; i >= 0; i--) {
+     *  for (int i = getNamespaceCount(getDepth ())-1; i &gt;= 0; i--) {
      *   if (getNamespacePrefix(i).equals( prefix )) {
      *     return getNamespaceUri(i);
      *   }
@@ -605,7 +605,7 @@ public interface XmlPullParser {
      * </pre>
      *
      * <p><strong>Please note:</strong> parser implementations
-     * may provide more efifcient lookup, e.g. using a Hashtable.
+     * may provide more efficient lookup, e.g. using a Hashtable.
      * The 'xml' prefix is bound to "http://www.w3.org/XML/1998/namespace", as
      * defined in the
      * <a href="http://www.w3.org/TR/REC-xml-names/#ns-using">Namespaces in XML</a>
@@ -631,7 +631,7 @@ public interface XmlPullParser {
      *
      * <pre>
      * &lt;!-- outside --&gt;     0
-     * &lt;root>                  1
+     * &lt;root&gt;                  1
      *   sometext                 1
      *     &lt;foobar&gt;         2
      *     &lt;/foobar&gt;        2
@@ -815,7 +815,7 @@ public interface XmlPullParser {
      * <a href="http://www.w3.org/TR/REC-xml-names/#ns-using">Namespaces in XML</a>
      * specification to "http://www.w3.org/XML/1998/namespace".
      *
-     * @param zero based index of attribute
+     * @param index zero based index of attribute
      * @return attribute namespace,
      *   empty string ("") is returned  if namesapces processing is not enabled or
      *   namespaces processing is enabled but attribute has no namespace (it has no prefix).
@@ -828,7 +828,7 @@ public interface XmlPullParser {
      * Throws an IndexOutOfBoundsException if the index is out of range
      * or current event type is not START_TAG.
      *
-     * @param zero based index of attribute
+     * @param index zero based index of attribute
      * @return attribute name (null is never returned)
      */
     String getAttributeName (int index);
@@ -840,7 +840,7 @@ public interface XmlPullParser {
      * Throws an IndexOutOfBoundsException if the index is out of range
      * or current event type is not START_TAG.
      *
-     * @param zero based index of attribute
+     * @param index zero based index of attribute
      * @return attribute prefix or null if namespaces processing is not enabled.
      */
     String getAttributePrefix(int index);
@@ -849,7 +849,7 @@ public interface XmlPullParser {
      * Returns the type of the specified attribute
      * If parser is non-validating it MUST return CDATA.
      *
-     * @param zero based index of attribute
+     * @param index zero based index of attribute
      * @return attribute type (null is never returned)
      */
     String getAttributeType(int index);
@@ -859,7 +859,7 @@ public interface XmlPullParser {
      * If parser is non-validating it MUST always return false.
      * This information is part of XML infoset:
      *
-     * @param zero based index of attribute
+     * @param index zero based index of attribute
      * @return false if attribute was in input
      */
     boolean isAttributeDefault(int index);
@@ -876,7 +876,7 @@ public interface XmlPullParser {
      *
      * @see #defineEntityReplacementText
      *
-     * @param zero based index of attribute
+     * @param index zero based index of attribute
      * @return value of attribute (null is never returned)
      */
     String getAttributeValue(int index);
@@ -913,15 +913,15 @@ public interface XmlPullParser {
         throws XmlPullParserException;
 
     /**
-     * Get next parsing event - element content wil be coalesced and only one
+     * Get next parsing event - element content will be coalesced and only one
      * TEXT event must be returned for whole element content
-     * (comments and processing instructions will be ignored and emtity references
-     * must be expanded or exception mus be thrown if entity reerence can not be exapnded).
+     * (comments and processing instructions will be ignored and empty references
+     * must be expanded or exception must be thrown if entity reference can not be expanded).
      * If element content is empty (content is "") then no TEXT event will be reported.
      *
-     * <p><b>NOTE:</b> empty element (such as &lt;tag/>) will be reported
+     * <p><b>NOTE:</b> empty element (such as &lt;tag/&gt;) will be reported
      *  with  two separate events: START_TAG, END_TAG - it must be so to preserve
-     *   parsing equivalency of empty element to &lt;tag>&lt;/tag>.
+     *   parsing equivalence of empty element to &lt;tag&gt;&lt;/tag&gt;.
      *  (see isEmptyElementTag ())
      *
      * @see #isEmptyElementTag
@@ -944,7 +944,7 @@ public interface XmlPullParser {
      * <a href="http://xmlpull.org/v1/doc/features.html#xml-roundtrip">FEATURE_XML_ROUNDTRIP</a>
      * (identified by URI: http://xmlpull.org/v1/doc/features.html#xml-roundtrip)
      * is enabled it is possible to do XML document round trip ie. reproduce
-     * exectly on output the XML input using getText():
+     * exactly on output the XML input using getText():
      * returned content is always unnormalized (exactly as in input).
      * Otherwise returned content is end-of-line normalized as described
      * <a href="http://www.w3.org/TR/REC-xml#sec-line-ends">XML 1.0 End-of-Line Handling</a>
@@ -956,26 +956,26 @@ public interface XmlPullParser {
      * <dt>START_DOCUMENT<dd>null
      * <dt>END_DOCUMENT<dd>null
      * <dt>START_TAG<dd>null unless FEATURE_XML_ROUNDTRIP
-     *   enabled and then returns XML tag, ex: &lt;tag attr='val'>
+     *   enabled and then returns XML tag, ex: &lt;tag attr='val'&gt;
      * <dt>END_TAG<dd>null unless FEATURE_XML_ROUNDTRIP
-     *  id enabled and then returns XML tag, ex: &lt;/tag>
+     *  id enabled and then returns XML tag, ex: &lt;/tag&gt;
      * <dt>TEXT<dd>return element content.
      *  <br>Note: that element content may be delivered in multiple consecutive TEXT events.
      * <dt>IGNORABLE_WHITESPACE<dd>return characters that are determined to be ignorable white
      * space. If the FEATURE_XML_ROUNDTRIP is enabled all whitespace content outside root
-     * element will always reported as IGNORABLE_WHITESPACE otherise rteporting is optional.
-     *  <br>Note: that element content may be delevered in multiple consecutive IGNORABLE_WHITESPACE events.
+     * element will always reported as IGNORABLE_WHITESPACE otherwise reporting is optional.
+     *  <br>Note: that element content may be delivered in multiple consecutive IGNORABLE_WHITESPACE events.
      * <dt>CDSECT<dd>
      * return text <em>inside</em> CDATA
-     *  (ex. 'fo&lt;o' from &lt;!CDATA[fo&lt;o]]>)
+     *  (ex. 'fo&lt;o' from &lt;!CDATA[fo&lt;o]]&gt;)
      * <dt>PROCESSING_INSTRUCTION<dd>
      *  if FEATURE_XML_ROUNDTRIP is true
-     *  return exact PI content ex: 'pi foo' from &lt;?pi foo?>
+     *  return exact PI content ex: 'pi foo' from &lt;?pi foo?&gt;
      *  otherwise it may be exact PI content or concatenation of PI target,
      * space and data so for example for
-     *   &lt;?target    data?> string &quot;target data&quot; may
+     *   &lt;?target    data?&gt; string &quot;target data&quot; may
      *       be returned if FEATURE_XML_ROUNDTRIP is false.
-     * <dt>COMMENT<dd>return comment content ex. 'foo bar' from &lt;!--foo bar-->
+     * <dt>COMMENT<dd>return comment content ex. 'foo bar' from &lt;!--foo bar--&gt;
      * <dt>ENTITY_REF<dd>getText() MUST return entity replacement text if PROCESS_DOCDECL is false
      * otherwise getText() MAY return null,
      * additionally getTextCharacters() MUST return entity name
@@ -993,10 +993,10 @@ public interface XmlPullParser {
      * if FEATURE_XML_ROUNDTRIP is true or PROCESS_DOCDECL is false
      * then return what is inside of DOCDECL for example it returns:<pre>
      * &quot; titlepage SYSTEM "http://www.foo.bar/dtds/typo.dtd"
-     * [&lt;!ENTITY % active.links "INCLUDE">]&quot;</pre>
+     * [&lt;!ENTITY % active.links "INCLUDE"&gt;]&quot;</pre>
      * <p>for input document that contained:<pre>
      * &lt;!DOCTYPE titlepage SYSTEM "http://www.foo.bar/dtds/typo.dtd"
-     * [&lt;!ENTITY % active.links "INCLUDE">]></pre>
+     * [&lt;!ENTITY % active.links "INCLUDE"&gt;]&gt;</pre>
      * otherwise if FEATURE_XML_ROUNDTRIP is false and PROCESS_DOCDECL is true
      *    then what is returned is undefined (it may be even null)
      * </dd>
@@ -1056,7 +1056,7 @@ public interface XmlPullParser {
      * <p>The motivation for this function is to allow to parse consistently both
      * empty elements and elements that has non empty content, for example for input: <ol>
      * <li>&lt;tag&gt;foo&lt;/tag&gt;
-     * <li>&lt;tag&gt;&lt;/tag&gt; (which is equivalent to &lt;tag/&gt;
+     * <li>&lt;tag&gt;&lt;/tag&gt;</ol> (which is equivalent to &lt;tag/&gt;
      * both input can be parsed with the same code:
      * <pre>
      *   p.nextTag()
