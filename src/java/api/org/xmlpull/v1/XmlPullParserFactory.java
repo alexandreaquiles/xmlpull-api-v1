@@ -6,6 +6,7 @@ package org.xmlpull.v1;
 import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.Scanner;
 import java.util.Vector;
 
 /**
@@ -20,7 +21,7 @@ import java.util.Vector;
  * a comma separated list of class names of factories or parsers to try (in order from
  * left to the right). If none found, it will throw an exception.
  *
- * <br /><strong>NOTE:</strong>In J2SE or J2EE environments, you may want to use
+ * <br><strong>NOTE:</strong>In J2SE or J2EE environments, you may want to use
  * <code>newInstance(property, classLoaderCtx)</code>
  * where first argument is
  * <code>System.getProperty(XmlPullParserFactory.PROPERTY_NAME)</code>
@@ -98,7 +99,7 @@ public class XmlPullParserFactory {
      *
      * @param name The name of feature to be retrieved.
      * @return The value of named feature.
-     *     Unknown features are <string>always</strong> returned as false
+     *     Unknown features are <strong>always</strong> returned as false
      */
 
     public boolean getFeature (String name) {
@@ -280,13 +281,11 @@ public class XmlPullParserFactory {
                              +" make sure that parser implementing XmlPull API is available");
                 final StringBuffer sb = new StringBuffer();
 
-                while (true) {
-                    final int ch = is.read();
-                    if (ch < 0) break;
-                    else if (ch > ' ')
-                        sb.append((char) ch);
+                Scanner sc = new Scanner(is);
+                while(sc.hasNextLine()) {
+                	 sb.append(sc.nextLine()+"\n");
                 }
-                is.close ();
+                sc.close();
 
                 classNames = sb.toString ();
             }
@@ -304,12 +303,8 @@ public class XmlPullParserFactory {
         final Vector serializerClasses = new Vector ();
         int pos = 0;
 
-        while (pos < classNames.length ()) {
-            int cut = classNames.indexOf (',', pos);
-
-            if (cut == -1) cut = classNames.length ();
-            final String name = classNames.substring (pos, cut);
-
+        String[] candidates = classNames.split("\n");
+        for (String name : candidates) {
             Class candidate = null;
             Object instance = null;
 
@@ -340,7 +335,6 @@ public class XmlPullParserFactory {
                     throw new XmlPullParserException ("incompatible class: "+name);
                 }
             }
-            pos = cut + 1;
         }
 
         if (factory == null) {
