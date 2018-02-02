@@ -1,5 +1,18 @@
 # XMLPULL V1 API Documentation
 
+## Changes in this fork
+
+- Using Java 1.6 as target
+- Using newline instead of comma as implementation separator in META-INF/services/org.xmlpull.v1.XmlPullParserFactory
+
+To build a JAR with the API, run:
+
+```
+mvn install
+``
+
+---
+
 <p><a href="doc/quick_intro.html">Quick Introduction</a>
 
 <p><a href="doc/build.txt">How to build instructions API and automatic tests</a>.
