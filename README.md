@@ -2,7 +2,7 @@
 
 ## Changes in this fork
 
-- Using Java 1.6 as target
+- Using Java 9 as target
 - Using newline instead of comma as implementation separator in META-INF/services/org.xmlpull.v1.XmlPullParserFactory
 
 To build a JAR with the API, run:
